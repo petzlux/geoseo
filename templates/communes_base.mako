@@ -16,25 +16,16 @@
 
 <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.css" rel="stylesheet"> 
 
-<!--  	<link rel="stylesheet" type="text/css" href="http://api.geoportail.lu/mfbase/ext/resources/css/ext-all.css" /> -->
- <link rel="stylesheet" type="text/css" href="http://luigipw.geoportal.lu/mfbase/ext/resources/css/ext-allGlobalsRemoved.css" />
-   <link rel="stylesheet" type="text/css" href="http://devpw.geoportail.lu/mfbase/ext/resources/css/ext-allGlobalsRemoved.css" />
+ <link rel="stylesheet" type="text/css" href="/css/geoseo.ext-all.css" /> 
+ <link rel="stylesheet" type="text/css" href="http://api.geoportail.lu/build/latest/xtheme-gray.css" /> 
+ <link rel="stylesheet" type="text/css" href="http://api.geoportail.lu/build/latest/api.css" /> 
+ <link rel="stylesheet" type="text/css" href="http://api.geoportail.lu/build/latest/MapFishApi_api.css" /> 
+ <link rel="stylesheet" type="text/css" href="/css/geoadminGlobalsRemoved.css" /> 
+ <script type="text/javascript" src="http://api.geoportail.lu/build/latest/ext-base.js"></script> 
+ <script type="text/javascript" src="http://api.geoportail.lu/build/latest/ext-all.js"></script> 
+ <script type="text/javascript" src="http://api.geoportail.lu/build/latest/geoadmin.js"></script> 
+ <script type="text/javascript" src="http://api.geoportail.lu/api.js"></script> 
 
-  <link rel="stylesheet" type="text/css" href="http://api.geoportail.lu/mfbase/ext/resources/css/xtheme-gray.css" /> 
-
-	<link rel="stylesheet" type="text/css" href="http://api.geoportail.lu/geoadminApi/css/api.css" />
-    <link rel="stylesheet" type="text/css" href="http://api.geoportail.lu/MapFishApi/css/api.css" />
-	
-	<link rel="stylesheet" type="text/css" href="http://luigipw.geoportal.lu/css/geoadminGlobalsRemoved.css" />	
-	<link rel="stylesheet" type="text/css" href="http://devpw.geoportail.lu/css/geoadminGlobalsRemoved.css" />
-	
-<!--   <link rel="stylesheet" type="text/css" href="http://api.geoportail.lu/css/geoadmin.css" />-->
- <link rel="stylesheet" type="text/css" href="http://api.geoportail.lu/css/main.css" />  
- 
-    <script type="text/javascript" src="http://api.geoportail.lu/mfbase/ext/adapter/ext/ext-base.js"></script>
-    <script type="text/javascript" src="http://api.geoportail.lu/mfbase/ext/ext-all.js"></script>
-    <script type="text/javascript" src="http://api.geoportail.lu/build/geoadmin.js?v=3"></script>
-    <script type="text/javascript" src="http://map.geoportail.lu/main.js"></script> 
 <!-- Piwik -->
 <script type="text/javascript">
   var _paq = _paq || [];
@@ -221,6 +212,5 @@
    <!-- Latest compiled and minified JavaScript -->
 
  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.js"></script> 
-   
 </html>
 
