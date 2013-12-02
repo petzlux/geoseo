@@ -55,7 +55,7 @@ class CommunesController(BaseController):
         for it in items:
             i=it.strip()
             if i in self.layers:
-                #print "adding layer " + i
+                #log.info( "adding layer " + i)
                 if i not in theme_layers:
                     theme_layers.append(i)
             elif i in self.groups:
@@ -93,6 +93,9 @@ class CommunesController(BaseController):
                     pass
             elif s.find('layer:')>-1:
                 self.layers.append(name)
+                if cfg.has_option(s,'metdataID'):
+                    print "Here should the layer metadataID be: "
+                    print cfg.get(s,'metadataID')
             elif s.find('group:')>-1:
                 try:
                     self.groups[name]=cfg.get(s,'items').split(",")
@@ -119,7 +122,7 @@ class CommunesController(BaseController):
                              theme=theme
                          )
                 layers = self._get_layers_for_theme(theme)
-                #print layers
+                # print layers
                 themes.append([theme, u,layers])
         c.themes = themes
 
@@ -129,8 +132,8 @@ class CommunesController(BaseController):
                 for feature in Session.query(klass).order_by("name ASC"):
                         features.append(feature)
         c.features = features
-
         return render('/communes.mako')
+        
     def commune(self,commune):
         c.commune = commune
         features= []
@@ -139,6 +142,7 @@ class CommunesController(BaseController):
                         features.append(feature)
         c.features = features
         return render('/communes_commune.mako')
+
     def layer(self,commune,layer):
         c.commune = commune
         c.layer = layer
@@ -146,5 +150,5 @@ class CommunesController(BaseController):
         for klass in layers_from_bid('communes'):
                 for feature in Session.query(klass).filter("name = '%s'"%commune):
                         features.append(feature)
-        c.features = features
+        c.features = features	
         return render('/communes_commune_layer.mako')
