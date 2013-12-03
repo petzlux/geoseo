@@ -34,7 +34,7 @@ class CommunesController(BaseController):
         c.lang = request.params.get('lang', 'de')
 
         # locale "lu" does not exist and is replaced by "it"
-        if c.lang == 'lu':
+        if c.lang == 'lu' or c.lang == 'lb':
             c.lang = 'it'
 
         h.set_lang(c.lang)
@@ -57,7 +57,7 @@ class CommunesController(BaseController):
             if i in self.layers:
                 #log.info( "adding layer " + i)
                 if i not in theme_layers:
-                    theme_layers.append(i)
+                    theme_layers[i]=self.layers[i]
             elif i in self.groups:
                 #print "sending %s into recursion with layers %s" % (i,str(self.groups[i]))
                 self._fill_layers(self.groups[i],theme_layers)
@@ -67,7 +67,7 @@ class CommunesController(BaseController):
         return 
     def _get_layers_for_theme(self,theme):
         #print "theme " + theme
-        theme_layers = []
+        theme_layers = {}
         self._fill_layers(self.themes[theme],theme_layers)
         return theme_layers
     def _get_themes(self):
@@ -75,7 +75,7 @@ class CommunesController(BaseController):
         cfg.readfp(codecs.open(config['themes.cfg'], 'r', 'utf8'))
         themes = []
         self.themes = {}
-        self.layers = []
+        self.layers = {}
         self.groups = {}
         
         #print len(cfg.sections())
@@ -92,10 +92,13 @@ class CommunesController(BaseController):
                     #print "no items in theme %s " % name
                     pass
             elif s.find('layer:')>-1:
-                self.layers.append(name)
+                label=name
                 if cfg.has_option(s,'metdataID'):
                     print "Here should the layer metadataID be: "
                     print cfg.get(s,'metadataID')
+                if cfg.has_option(s,'label'):
+                    label = cfg.get(s,'label')
+                self.layers[name]=label
             elif s.find('group:')>-1:
                 try:
                     self.groups[name]=cfg.get(s,'items').split(",")
@@ -122,7 +125,7 @@ class CommunesController(BaseController):
                              theme=theme
                          )
                 layers = self._get_layers_for_theme(theme)
-                # print layers
+                #print layers
                 themes.append([theme, u,layers])
         c.themes = themes
 
@@ -146,6 +149,7 @@ class CommunesController(BaseController):
     def layer(self,commune,layer):
         c.commune = commune
         c.layer = layer
+        c.layerlabel = self.layers[layer]
         features= []
         for klass in layers_from_bid('communes'):
                 for feature in Session.query(klass).filter("name = '%s'"%commune):

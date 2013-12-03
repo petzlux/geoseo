@@ -2,29 +2,31 @@
 
 <%inherit file="communes_base.mako"/>
 <%def name="title()">
-   Index des Communes
+  ${_('communes')}
 </%def> 
 <%def name="body()">
 
 <ul class="breadcrumb">
-	<li class="active">Index des Communes</li>
+	<li class="active">${_('communes')}</li>
 </ul>
 
-<h2>Communes du Grand-Duche de Luxembourg</h2>
+<h2>${_('communes_gdl')}</h2>
 
 <p>
-Veuillez ci-dessous trouver des liens pour chaque commune du Grand-Duche. Vous trouverez des informations concernant les couches d'informations distribuees par l'Administration du Cadastre et de la Topographie du Luxembourg.
+${_('geoseo_communes_txt')}
 </p>
 <%
     first = True
+    if c.lang=='it' or c.lang=='lu':
+        c.lang='lb'
 %>
 
 % for f in c.features:
 	% if first == True:
-		<a href="/communes/${f.name}">${f.name}</a>
+		<a href="/communes/${f.name}?lang=${c.lang}">${f.name}</a>
 	<% first = False %>		
 	% else:
-		| <a href="/communes/${f.name}">${f.name}</a>
+		| <a href="/communes/${f.name}?lang=${c.lang}">${f.name}</a>
 	% endif
 % endfor
 
