@@ -3,7 +3,7 @@
 <%inherit file="communes_base.mako" />
 	
 <%def name="title()">
-   ${_('geoseo_communes_page_title')} ${c.commune}
+  ${_(c.layer)} - ${_('geoseo_communes_page_title')} ${c.commune}
 </%def> 
 
 <script type="text/javascript">   
